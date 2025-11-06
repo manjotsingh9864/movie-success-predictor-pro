@@ -669,3 +669,13 @@ st.markdown("""
     </p>
 </div>
 """, unsafe_allow_html=True)
+
+# Creator Credit
+st.markdown("""
+<hr>
+<div style='text-align: center; margin-top: 2rem;'>
+    <h4 style='color: #00e0ff; text-shadow: 0 0 10px rgba(0, 255, 204, 0.6);'>
+        🚀 Created with ❤️ by <b>Manjot Singh</b> 🎬
+    </h4>
+</div>
+""", unsafe_allow_html=True)
