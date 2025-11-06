@@ -553,10 +553,13 @@ if predict_button:
                 marker_colors=['#10b981', '#667eea', '#f093fb']
             )])
             fig.update_layout(
-                title="💰 Financial Breakdown",
+                title="<b style='color:#00ffff;'>💰 Financial Breakdown</b>",
                 paper_bgcolor='rgba(0,0,0,0)',
                 plot_bgcolor='rgba(0,0,0,0)',
-                font=dict(color='white', size=14),
+                font=dict(color='#aeeeff', size=14),
+                legend=dict(
+                    font=dict(color='#00ffff', size=13)
+                ),
                 showlegend=True,
                 height=400
             )
@@ -571,11 +574,11 @@ if predict_button:
                              '#10b981' if net_profit > 0 else '#ef4444']
             )])
             fig.update_layout(
-                title="📊 Investment vs Returns",
+                title="<b style='color:#00ffff;'>📊 Investment vs Returns</b>",
                 paper_bgcolor='rgba(0,0,0,0)',
                 plot_bgcolor='rgba(0,0,0,0)',
-                font=dict(color='white', size=14),
-                yaxis_title="Amount (₹ Crores)",
+                font=dict(color='#aeeeff', size=14),
+                yaxis_title="<b style='color:#00ffa3;'>Amount (₹ Crores)</b>",
                 height=400
             )
             st.plotly_chart(fig, use_container_width=True)
