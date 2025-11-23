@@ -21,9 +21,47 @@ st.markdown("""
     * {
         font-family: 'Poppins', sans-serif;
     }
+    /* Remove Streamlit top whitespace & header */
+    header { 
+        visibility: hidden; 
+        height: 0px; 
+    }
     .stApp {
+        padding-top: 0 !important;
+        margin-top: -3rem !important;
         background: linear-gradient(135deg, #0f2027 0%, #203a43 50%, #2c5364 100%);
         color: #e0f7fa;
+    }
+    /* Sidebar Ultra-Premium Glass Cards */
+    .sidebar-card {
+        background: rgba(255, 255, 255, 0.06);
+        border-radius: 14px;
+        padding: 14px 14px;
+        margin-bottom: 12px;
+        border: 1px solid rgba(0, 255, 255, 0.18);
+        box-shadow: 0 0 10px rgba(0,255,255,0.15);
+        backdrop-filter: blur(10px);
+        transition: 0.25s ease-in-out;
+    }
+    .sidebar-card:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 0 16px rgba(0,255,255,0.35);
+    }
+    /* Sidebar Expander Styling */
+    [data-testid="stSidebar"] .streamlit-expanderHeader {
+        background: rgba(0,255,255,0.05) !important;
+        border-radius: 8px !important;
+        padding: 6px 10px !important;
+        border: 1px solid rgba(0,255,255,0.18) !important;
+        box-shadow: 0 0 8px rgba(0,255,255,0.18) !important;
+        font-size: 0.9rem !important;
+    }
+    [data-testid="stSidebar"] details > div {
+        background: rgba(0,255,255,0.03) !important;
+        padding: 8px !important;
+        border-radius: 6px !important;
+        border-left: 2px solid #00ffff !important;
+        box-shadow: inset 0 0 6px rgba(0,255,255,0.12);
     }
     .main-header {
         text-align: center;
@@ -75,9 +113,21 @@ st.markdown("""
         box-shadow: 0 0 25px rgba(0, 255, 204, 0.7);
     }
     [data-testid="stSidebar"] {
-        background: linear-gradient(180deg, #10222e 0%, #1c3b45 100%);
-        border-right: 2px solid rgba(0, 255, 204, 0.2);
-        color: #e0f7fa;
+        background: linear-gradient(180deg, #0c1a22 0%, #112b36 40%, #0d1f28 100%);
+        padding: 25px 18px;
+        border-right: 2px solid rgba(0, 255, 204, 0.25);
+        box-shadow: 0 0 35px rgba(0,255,204,0.15);
+        backdrop-filter: blur(12px);
+        color: #eaffff !important;
+    }
+    /* Lighten sidebar headings and text */
+    [data-testid="stSidebar"] h1, 
+    [data-testid="stSidebar"] h2, 
+    [data-testid="stSidebar"] h3, 
+    [data-testid="stSidebar"] h4, 
+    [data-testid="stSidebar"] p, 
+    [data-testid="stSidebar"] label {
+        color: #e8ffff !important;
     }
     .metric-card {
         background: linear-gradient(135deg, rgba(0, 255, 204, 0.1), rgba(0, 180, 255, 0.1));
@@ -121,6 +171,39 @@ st.markdown("""
 
     div[data-testid="stMarkdownContainer"] p {
         color: #e0f7fa !important;
+    }
+    .metric-grid {
+        display: flex;
+        gap: 12px;
+        width: 100%;
+    }
+    .metric-box {
+        flex: 1;
+        padding: 16px;
+        border-radius: 16px;
+        background: rgba(0, 255, 255, 0.06);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(0,255,255,0.22);
+        text-align: center;
+        box-shadow: 0 0 18px rgba(0,255,255,0.22);
+        transition: all 0.25s ease-in-out;
+        height: 150px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+    .metric-box h2 {
+        margin: 4px 0 0 0;
+        font-size: 2rem;
+        font-weight: 700;
+        color: #ffffff;
+        text-shadow: 0 0 10px #00ffff;
+    }
+    .metric-box h4 {
+        margin: 0;
+        color: #eaffff;
+        font-size: 1.1rem;
+        font-weight: 500;
     }
 </style>
 """, unsafe_allow_html=True)
@@ -176,45 +259,37 @@ model = load_model()
 # Header
 st.markdown('<h1 class="main-header">🎬 AI MOVIE SUCCESS PREDICTOR PRO</h1>', unsafe_allow_html=True)
 st.markdown('<p class="sub-header">NEXT-GEN ML POWERED BOX OFFICE ANALYTICS</p>', unsafe_allow_html=True)
+st.markdown("<p style='text-align:center; color:#aeefff;'>Created by <b>Manjot Singh</b></p>", unsafe_allow_html=True)
+st.markdown("<div style='margin-top:-1.5rem;'></div>", unsafe_allow_html=True)
 
 # Enhanced Sidebar
 with st.sidebar:
     st.image("https://img.icons8.com/3d-fluency/94/clapperboard.png", width=100)
-    st.title("🎯 About This Tool")
-    
-    st.markdown("""
-    ### 🚀 Features
-    - **AI-Powered Predictions** using advanced ML
-    - **Real-time Analytics** with interactive charts
-    - **Comprehensive Database** of directors & actors
-    - **Financial Projections** with ROI calculations
-    - **Risk Assessment** with confidence scores
-    
-    ### 📊 Prediction Factors
-    - 🎬 **Creative Team** - Director, Cast reputation
-    - 💰 **Budget** - Production & Marketing costs
-    - 📅 **Release Strategy** - Timing & Screen count
-    - ⭐ **Quality Metrics** - Critic & Audience scores
-    - 🎭 **Genre & Format** - Category & Franchise status
-    
-    ### 🎯 How It Works
-    1. Select director from database
-    2. Configure movie parameters
-    3. Set budget & marketing spend
-    4. Get instant AI prediction
-    5. Review detailed analytics
-    """)
-    
-    st.markdown("---")
+    st.markdown("## 🎯 Quick Menu")
+    about = st.expander("✨ About This Tool", expanded=False)
+    with about:
+        st.markdown("AI-powered movie success prediction system with financial analytics.")
+    features = st.expander("🚀 Features", expanded=False)
+    with features:
+        st.markdown("• AI predictions\n• Financial charts\n• ROI analysis\n• Creative team metrics")
+    working = st.expander("🧠 How It Works", expanded=False)
+    with working:
+        st.markdown("1. Enter movie details\n2. Model processes data\n3. Shows prediction & charts")
     st.info("💡 **Tip:** Use data from similar successful movies for better predictions!")
-    
-    # Quick Stats
+    # Quick Stats (Glowing Boxes)
     st.markdown("### 📈 Model Stats")
-    col1, col2 = st.columns(2)
-    with col1:
-        st.metric("Accuracy", "94.2%", "+2.1%")
-    with col2:
-        st.metric("Movies Analyzed", "1000+", "+50")
+    st.markdown("""
+<div class='metric-grid'>
+    <div class='metric-box'>
+        <h4>Accuracy</h4>
+        <h2>94.2%</h2>
+    </div>
+    <div class='metric-box'>
+        <h4>Movies Analyzed</h4>
+        <h2>1000+</h2>
+    </div>
+</div>
+""", unsafe_allow_html=True)
 
 if model is None:
     st.stop()
